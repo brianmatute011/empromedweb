@@ -96,7 +96,7 @@
             labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
             datasets: [{
                     label: "Anthistaminicos",
-                    data: [15, 30, 55, 45, 70, 65, 85],
+                    data: [15, 30, 55, 45, 70, 65, 99],
                     backgroundColor: "rgba(0, 156, 255, .5)",
                     fill: true
                 },
