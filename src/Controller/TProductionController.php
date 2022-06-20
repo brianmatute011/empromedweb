@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TProductionController extends AbstractController
 {
-    #[Route('/t/production', name: 'app_t_production')]
+    #[Route('/tproduction', name: 'app_t_production')]
     public function index(): Response
     {
         return $this->render('t_production/index.html.twig', [
