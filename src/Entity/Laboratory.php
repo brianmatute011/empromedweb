@@ -30,9 +30,7 @@ class Laboratory
     #[ORM\OneToMany(mappedBy: 'LWID', targetEntity: Workers::class)]
     private $labworkers;
 
-    #[ORM\ManyToOne(targetEntity: Workers::class, inversedBy: 'laboratories')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $WLID;
+
 
     public function __construct()
     {
@@ -141,15 +139,6 @@ class Laboratory
         return $this;
     }
 
-    public function getWLID(): ?Workers
-    {
-        return $this->WLID;
-    }
 
-    public function setWLID(?Workers $WLID): self
-    {
-        $this->WLID = $WLID;
 
-        return $this;
-    }
 }

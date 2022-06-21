@@ -18,7 +18,7 @@ class Products
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'date')]
     private $ExpirationDate;
 
     #[ORM\Column(type: 'string', length: 255)]

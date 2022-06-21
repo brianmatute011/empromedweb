@@ -12,7 +12,7 @@ class Workers
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'bigint')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -33,11 +33,6 @@ class Workers
     #[ORM\Column(type: 'float')]
     private $salario;
 
-    #[ORM\ManyToOne(targetEntity: Laboratory::class, inversedBy: 'labworkers')]
-    private $LWID;
-
-    #[ORM\OneToMany(mappedBy: 'WLID', targetEntity: Laboratory::class)]
-    private $laboratories;
 
     #[ORM\OneToMany(mappedBy: 'IDW', targetEntity: Production::class)]
     private $productions;
@@ -45,9 +40,12 @@ class Workers
     #[ORM\OneToMany(mappedBy: 'TEID', targetEntity: Evaluation::class)]
     private $evaluations;
 
+    #[ORM\ManyToOne(targetEntity: Laboratory::class, inversedBy: 'labworkers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $LWID;
+
     public function __construct()
     {
-        $this->laboratories = new ArrayCollection();
         $this->productions = new ArrayCollection();
         $this->evaluations = new ArrayCollection();
     }
@@ -129,47 +127,8 @@ class Workers
         return $this;
     }
 
-    public function getLWID(): ?Laboratory
-    {
-        return $this->LWID;
-    }
 
-    public function setLWID(?Laboratory $LWID): self
-    {
-        $this->LWID = $LWID;
 
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Laboratory>
-     */
-    public function getLaboratories(): Collection
-    {
-        return $this->laboratories;
-    }
-
-    public function addLaboratory(Laboratory $laboratory): self
-    {
-        if (!$this->laboratories->contains($laboratory)) {
-            $this->laboratories[] = $laboratory;
-            $laboratory->setWLID($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLaboratory(Laboratory $laboratory): self
-    {
-        if ($this->laboratories->removeElement($laboratory)) {
-            // set the owning side to null (unless already changed)
-            if ($laboratory->getWLID() === $this) {
-                $laboratory->setWLID(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Production>
@@ -227,6 +186,18 @@ class Workers
                 $evaluation->setTEID(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLWID(): ?Laboratory
+    {
+        return $this->LWID;
+    }
+
+    public function setLWID(?Laboratory $LWID): self
+    {
+        $this->LWID = $LWID;
 
         return $this;
     }
