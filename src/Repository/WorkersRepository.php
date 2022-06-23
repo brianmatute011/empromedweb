@@ -39,20 +39,20 @@ class WorkersRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Workers[] Returns an array of Workers objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
+    /**
+     * @return Workers[] Returns an array of Workers objects
+     */
+    public function findBySalario($value = 1500): array
+    {
+        return $this->createQueryBuilder('w')
+            ->andWhere('w.salario > :val')
+            ->setParameter('val', $value)
+            ->orderBy('w.id', 'ASC')
 //            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Workers
 //    {

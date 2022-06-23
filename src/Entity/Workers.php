@@ -42,6 +42,7 @@ class Workers
 
     #[ORM\ManyToOne(targetEntity: Laboratory::class, inversedBy: 'labworkers')]
     #[ORM\JoinColumn(nullable: false)]
+
     private $LWID;
 
     public function __construct()
@@ -200,5 +201,10 @@ class Workers
         $this->LWID = $LWID;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id . " " . $this->name;
     }
 }

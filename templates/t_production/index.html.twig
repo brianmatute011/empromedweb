@@ -40,11 +40,13 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Insertar Produccion</h6>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Fecha de Produccion" aria-label="ProdDate">
-                    <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cant">
-                    <input type="text" class="form-control" placeholder="ID Trabajador" aria-label="IDWorker">
-                    <input type="text" class="form-control" placeholder="ID Producto" aria-label="IDProduct">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <form style="display: flex" action="{{ path('app_saveproduction') }}" method="post" name="production-form">
+                        <input type="text" class="form-control" placeholder="Fecha de Produccion" aria-label="ProdDate" name="fecha">
+                        <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cant" name="cantidad">
+                        <input type="text" class="form-control" placeholder="ID Trabajador" aria-label="IDWorker" name="id-worker">
+                        <input type="text" class="form-control" placeholder="ID Producto" aria-label="IDProduct" name="id-producto" required>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
 
                 </div>
             </div>
@@ -66,27 +68,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>12-01-2021</td>
-                            <td>56</td>
-                            <td>00113456789</td>
-                            <td>1006</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>14-01-2021</td>
-                            <td>158</td>
-                            <td>00100567239</td>
-                            <td>1007</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>15-01-2021</td>
-                            <td>193</td>
-                            <td>00101045109</td>
-                            <td>1008</td>
-                        </tr>
+                        {% for production in productions %}
+                            <tr>
+                                <th scope="row">{{ production.getId()}}</th>
+                                <td>{{ production.getProductionDate().format('Y-m-d')}}</td>
+                                <td>{{ production.getCant()}}</td>
+                                <td>{{ production.getIDW().getId()}}</td>
+                                <td>
+                                    {% if production.getIDP() %}
+                                        {{ production.getIDP().getId()}}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
