@@ -17,11 +17,11 @@ class ChCompProd
     private $cant;
 
     #[ORM\ManyToOne(targetEntity: Products::class, inversedBy: 'chCompProds')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name: 'chCompProds', referencedColumnName: "id", onDelete: "CASCADE")]
     private $PCCPID;
 
-    #[ORM\ManyToOne(targetEntity: ChemicalsComponets::class, inversedBy: 'chCompProds')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: ChemicalsComponets::class, inversedBy: 'chCompCComp')]
+    #[ORM\JoinColumn(nullable: false, name: 'chCompCComp', referencedColumnName: "id", onDelete: "CASCADE")]
     private $CCCCPID;
 
     public function getId(): ?int

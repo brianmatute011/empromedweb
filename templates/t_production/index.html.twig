@@ -40,7 +40,7 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Insertar Produccion</h6>
                 <div class="input-group mb-3">
-                    <form style="display: flex" action="{{ path('app_saveproduction') }}" method="post" name="production-form">
+                    <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveproduction') }}" method="post" name="production-form">
                         <input type="text" class="form-control" placeholder="Fecha de Produccion" aria-label="ProdDate" name="fecha">
                         <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cant" name="cantidad">
                         <input type="text" class="form-control" placeholder="ID Trabajador" aria-label="IDWorker" name="id-worker">
@@ -60,7 +60,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID Prod</th>
                             <th scope="col">Fecha de Produccion</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">ID Trabajador</th>
@@ -74,11 +74,7 @@
                                 <td>{{ production.getProductionDate().format('Y-m-d')}}</td>
                                 <td>{{ production.getCant()}}</td>
                                 <td>{{ production.getIDW().getId()}}</td>
-                                <td>
-                                    {% if production.getIDP() %}
-                                        {{ production.getIDP().getId()}}
-                                    {% endif %}
-                                </td>
+                                <td>{{ production.getIDP().getId()}}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

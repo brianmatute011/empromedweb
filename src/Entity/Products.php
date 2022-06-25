@@ -18,9 +18,6 @@ class Products
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'date')]
-    private $ExpirationDate;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $Type;
 
@@ -28,18 +25,19 @@ class Products
     private $Total;
 
     #[ORM\ManyToOne(targetEntity: Laboratory::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false, name: "products", referencedColumnName: "id", onDelete: "CASCADE")]
     private $LaboratoryID;
 
     #[ORM\OneToMany(mappedBy: 'IDP', targetEntity: Production::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $productions;
+    private $productionsProd;
 
     #[ORM\OneToMany(mappedBy: 'PCCPID', targetEntity: ChCompProd::class)]
     private $chCompProds;
 
     public function __construct()
     {
-        $this->productions = new ArrayCollection();
+        $this->productionsProd = new ArrayCollection();
         $this->chCompProds = new ArrayCollection();
     }
 
@@ -60,17 +58,6 @@ class Products
         return $this;
     }
 
-    public function getExpirationDate(): ?\DateTimeInterface
-    {
-        return $this->ExpirationDate;
-    }
-
-    public function setExpirationDate(\DateTimeInterface $ExpirationDate): self
-    {
-        $this->ExpirationDate = $ExpirationDate;
-
-        return $this;
-    }
 
     public function getType(): ?string
     {
@@ -111,15 +98,15 @@ class Products
     /**
      * @return Collection<int, Production>
      */
-    public function getProductions(): Collection
+    public function getProductionsProd(): Collection
     {
-        return $this->productions;
+        return $this->productionsProd;
     }
 
     public function addProduction(Production $production): self
     {
-        if (!$this->productions->contains($production)) {
-            $this->productions[] = $production;
+        if (!$this->productionsProd->contains($production)) {
+            $this->productionsProd[] = $production;
             $production->setIDP($this);
         }
 
@@ -128,7 +115,7 @@ class Products
 
     public function removeProduction(Production $production): self
     {
-        if ($this->productions->removeElement($production)) {
+        if ($this->productionsProd->removeElement($production)) {
             // set the owning side to null (unless already changed)
             if ($production->getIDP() === $this) {
                 $production->setIDP(null);

@@ -21,19 +21,20 @@ class Production
     #[ORM\Column(type: 'integer')]
     private $cant;
 
-    #[ORM\ManyToOne(targetEntity: Products::class, inversedBy: 'productions')]
+    #[ORM\ManyToOne(targetEntity: Products::class, inversedBy: 'productionsProd')]
+    #[ORM\JoinColumn(nullable: false, name: 'productionsProd', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private $IDP;
 
-    #[ORM\ManyToOne(targetEntity: Workers::class, inversedBy: 'productions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Workers::class, inversedBy: 'productionsWork')]
+    #[ORM\JoinColumn(nullable: false, name: 'productionsWork', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private $IDW;
 
     #[ORM\OneToMany(mappedBy: 'PEID', targetEntity: Evaluation::class)]
-    private $evaluations;
+    private $evaluationsProd;
 
     public function __construct()
     {
-        $this->evaluations = new ArrayCollection();
+        $this->evaluationsProd = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,15 +93,15 @@ class Production
     /**
      * @return Collection<int, Evaluation>
      */
-    public function getEvaluations(): Collection
+    public function getEvaluationsProd(): Collection
     {
-        return $this->evaluations;
+        return $this->evaluationsProd;
     }
 
     public function addEvaluation(Evaluation $evaluation): self
     {
-        if (!$this->evaluations->contains($evaluation)) {
-            $this->evaluations[] = $evaluation;
+        if (!$this->evaluationsProd->contains($evaluation)) {
+            $this->evaluationsProd[] = $evaluation;
             $evaluation->setPEID($this);
         }
 
@@ -109,7 +110,7 @@ class Production
 
     public function removeEvaluation(Evaluation $evaluation): self
     {
-        if ($this->evaluations->removeElement($evaluation)) {
+        if ($this->evaluationsProd->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
             if ($evaluation->getPEID() === $this) {
                 $evaluation->setPEID(null);

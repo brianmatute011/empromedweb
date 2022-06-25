@@ -22,12 +22,12 @@ class Evaluation
     #[ORM\Column(type: 'string', length: 255)]
     private $comment;
 
-    #[ORM\ManyToOne(targetEntity: Production::class, inversedBy: 'evaluations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Production::class, inversedBy: 'evaluationsProd')]
+    #[ORM\JoinColumn(nullable: false, name: 'evaluationsProd', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private $PEID;
 
-    #[ORM\ManyToOne(targetEntity: Workers::class, inversedBy: 'evaluations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Workers::class, inversedBy: 'evaluationsWork')]
+    #[ORM\JoinColumn(nullable: false, name: 'evaluationsWork', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private $TEID;
 
     public function getId(): ?int

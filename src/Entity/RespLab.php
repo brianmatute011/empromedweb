@@ -14,11 +14,11 @@ class RespLab
     private $id;
 
     #[ORM\OneToOne(targetEntity: Workers::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private $IDRESPW;
 
     #[ORM\OneToOne(targetEntity: Laboratory::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private $IDERESPL;
 
     public function getId(): ?int

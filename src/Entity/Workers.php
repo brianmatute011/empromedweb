@@ -35,20 +35,19 @@ class Workers
 
 
     #[ORM\OneToMany(mappedBy: 'IDW', targetEntity: Production::class)]
-    private $productions;
+    private $productionsWork;
 
     #[ORM\OneToMany(mappedBy: 'TEID', targetEntity: Evaluation::class)]
-    private $evaluations;
+    private $evaluationsWork;
 
     #[ORM\ManyToOne(targetEntity: Laboratory::class, inversedBy: 'labworkers')]
-    #[ORM\JoinColumn(nullable: false)]
-
+    #[ORM\JoinColumn(nullable: false, name: 'labworkers', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private $LWID;
 
     public function __construct()
     {
-        $this->productions = new ArrayCollection();
-        $this->evaluations = new ArrayCollection();
+        $this->productionsWork = new ArrayCollection();
+        $this->evaluationsWork = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,15 +133,15 @@ class Workers
     /**
      * @return Collection<int, Production>
      */
-    public function getProductions(): Collection
+    public function getProductionsWork(): Collection
     {
-        return $this->productions;
+        return $this->productionsWork;
     }
 
     public function addProduction(Production $production): self
     {
-        if (!$this->productions->contains($production)) {
-            $this->productions[] = $production;
+        if (!$this->productionsWork->contains($production)) {
+            $this->productionsWork[] = $production;
             $production->setIDW($this);
         }
 
@@ -151,7 +150,7 @@ class Workers
 
     public function removeProduction(Production $production): self
     {
-        if ($this->productions->removeElement($production)) {
+        if ($this->productionsWork->removeElement($production)) {
             // set the owning side to null (unless already changed)
             if ($production->getIDW() === $this) {
                 $production->setIDW(null);
@@ -164,15 +163,15 @@ class Workers
     /**
      * @return Collection<int, Evaluation>
      */
-    public function getEvaluations(): Collection
+    public function getEvaluationsWork(): Collection
     {
-        return $this->evaluations;
+        return $this->evaluationsWork;
     }
 
     public function addEvaluation(Evaluation $evaluation): self
     {
-        if (!$this->evaluations->contains($evaluation)) {
-            $this->evaluations[] = $evaluation;
+        if (!$this->evaluationsWork->contains($evaluation)) {
+            $this->evaluationsWork[] = $evaluation;
             $evaluation->setTEID($this);
         }
 
@@ -181,7 +180,7 @@ class Workers
 
     public function removeEvaluation(Evaluation $evaluation): self
     {
-        if ($this->evaluations->removeElement($evaluation)) {
+        if ($this->evaluationsWork->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
             if ($evaluation->getTEID() === $this) {
                 $evaluation->setTEID(null);

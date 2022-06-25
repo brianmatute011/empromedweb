@@ -22,11 +22,12 @@ class ChemicalsComponets
     private $ph;
 
     #[ORM\OneToMany(mappedBy: 'CCCCPID', targetEntity: ChCompProd::class)]
-    private $chCompProds;
+    private $chCompCComp;
 
     public function __construct()
     {
-        $this->chCompProds = new ArrayCollection();
+        $this->chCompCComp
+            = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,15 +62,19 @@ class ChemicalsComponets
     /**
      * @return Collection<int, ChCompProd>
      */
-    public function getChCompProds(): Collection
+    public function getChCompCComp
+    (): Collection
     {
-        return $this->chCompProds;
+        return $this->chCompCComp
+            ;
     }
 
     public function addChCompProd(ChCompProd $chCompProd): self
     {
-        if (!$this->chCompProds->contains($chCompProd)) {
-            $this->chCompProds[] = $chCompProd;
+        if (!$this->chCompCComp
+            ->contains($chCompProd)) {
+            $this->chCompCComp
+            [] = $chCompProd;
             $chCompProd->setCCCCPID($this);
         }
 
@@ -78,7 +83,8 @@ class ChemicalsComponets
 
     public function removeChCompProd(ChCompProd $chCompProd): self
     {
-        if ($this->chCompProds->removeElement($chCompProd)) {
+        if ($this->chCompCComp
+            ->removeElement($chCompProd)) {
             // set the owning side to null (unless already changed)
             if ($chCompProd->getCCCCPID() === $this) {
                 $chCompProd->setCCCCPID(null);

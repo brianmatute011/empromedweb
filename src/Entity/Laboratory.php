@@ -21,9 +21,6 @@ class Laboratory
     #[ORM\Column(type: 'string', length: 255)]
     private $labtype;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $workers;
-
     #[ORM\OneToMany(mappedBy: 'LaboratoryID', targetEntity: Products::class)]
     private $products;
 
@@ -67,17 +64,6 @@ class Laboratory
         return $this;
     }
 
-    public function getWorkers(): ?string
-    {
-        return $this->workers;
-    }
-
-    public function setWorkers(string $workers): self
-    {
-        $this->workers = $workers;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Products>
