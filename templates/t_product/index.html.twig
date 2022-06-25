@@ -29,45 +29,41 @@
                 <div class="navbar-nav w-100">
                     <a href="dashboard" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Produccion</a>
-                    <a href="tworker" class="nav-item nav-link  active"><i class="fa fa-table me-2"></i>Trabajadores</a>
-                    <a href="tproduct" class="nav-item nav-link"><i class="bi bi-heart"></i>Medicamentos</a>
-                    <a href="report" class="nav-item nav-link" ><i class="fa fa-file-alt me-2"></i>Reportes</a>
+                    <a href="tworker" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Trabajadores</a>
+                    <a href="tproduct" class="nav-item nav-link active"><i class="bi bi-heart"></i>Medicamentos</a>
+                    <a href="report" class="nav-item nav-link " ><i class="fa fa-file-alt me-2"></i>Reportes</a>
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
-        <!-- Insert Worker-->
+
+        <!--Insert  Porduct -->
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Insertar Trabajador</h6>
+                <h6 class="mb-4">Insertar Producto</h6>
                 <div class="input-group mb-3">
-                    <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveworker') }}" method="post" name="production-form">
-                        <input type="text" class="form-control" placeholder="CI" aria-label="CI" name="id-worker">
-                        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nam">
-                        <input type="text" class="form-control" placeholder="Edad" aria-label="Edad" name="age">
-                        <input type="text" class="form-control" placeholder="Sexo" aria-label="Sexo" name="sex">
-                        <input type="text" class="form-control" placeholder="Posicion" aria-label="Posicion" name="position">
-                        <input type="text" class="form-control" placeholder="A. de experiencia" aria-label="AnosExp" name="age-exp" required>
-                        <input type="text" class="form-control" placeholder="ID Lab" aria-label="IDLaboratory" name="id-lab" required>
-                        <input type="text" class="form-control" placeholder="Salario" aria-label="Salario" name="salary" required>
+                    <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveproduct') }}" method="post" name="production-form">
+                        <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" name="nam">
+                        <input type="text" class="form-control" placeholder="Tipo" aria-label="type" name="type">
+                        <input type="text" class="form-control" placeholder="Total" aria-label="Total" name="total">
+                        <input type="text" class="form-control" placeholder="ID Lab" aria-label="IDLab" name="id-lab" required>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </form>
 
                 </div>
             </div>
         </div>
-        <!-- End Insert Worker-->
+        <!--End Insert Porduct -->
 
-
-        <!-- Delete Worker -->
+        <!-- Delete Product -->
         <div class="bg-light col-sm-12 col-xl-12">
             <div class="col-sm-4 col-xl-4">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Eliminar Trabajador</h6>
+                    <h6 class="mb-4">Eliminar Producto</h6>
                     <div class="input-group mb-6">
-                        <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveworker')}}" method="post" name="production-form">
-                            <input type="text" class="form-control" placeholder="CI" aria-label="CI" name="id-worker" required>
+                        <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveproduct') }}" method="post" name="production-form">
+                            <input type="text" class="form-control" placeholder="ID Medicamento" aria-label="IDProduct" name="id-product" required>
                             <button type="submit" class="btn btn-danger btn-primary">Eliminar</button>
                         </form>
 
@@ -75,38 +71,31 @@
                 </div>
             </div>
         </div>
-        <!-- End Delete Worker-->
-
+        <!--End Delete Product -->
 
         <!--Table Start -->
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Tabla de Trabajadores</h6>
+                <h6 class="mb-4">Tabla de Medicamentos</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">CI</th>
+                            <th scope="col">ID Med</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Edad</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Posicion</th>
-                            <th scope="col">Anos de experiencia</th>
-                            <th scope="col">ID Laboratorio</th>
-                            <th scope="col">Salario</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Total</th>
+                            <th scope="col" style="text-align: center">IDLab</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for worker in workers %}
+                        {% for product in products %}
                             <tr>
-                                <th scope="row">{{ worker.getId()}}</th>
-                                <td>{{ worker.getName()}}</td>
-                                <td>{{ worker.getAge()}}</td>
-                                <td>{{ worker.getSex()}}</td>
-                                <td>{{ worker.getPosition()}}</td>
-                                <td style="text-align: center">{{ worker.getYearExperiences()}}</td>
-                                <td style="text-align: center">{{ worker.getLWID.getID()}}</td>
-                                <td>{{ worker.getSalario()}}</td>
+                                <th scope="row">{{ product.getId()}}</th>
+                                <td>{{ product.getName()}}</td>
+                                <td>{{ product.getType()}}</td>
+                                <td>{{ product.getTotal()}}</td>
+                                <td style="text-align: center">{{ product.getLaboratoryID().getId}}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -117,12 +106,17 @@
         <!--Table End -->
 
 
+
+
+
+
         {% include 'base.footer.html.twig' %}
     </div>
     <!-- Content End -->
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
+
 {% include'base.library.js.html.twig'%}
 </body>
 

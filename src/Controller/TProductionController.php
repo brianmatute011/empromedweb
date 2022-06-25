@@ -17,9 +17,11 @@ class TProductionController extends AbstractController
     public function index( ManagerRegistry $doctrine): Response
     {
         $production = $doctrine->getRepository(Production::class)->findAll();
+        $a = "ROLE_USER";
 
         return $this->render('t_production/index.html.twig', [
-            'productions' => $production
+            'productions' => $production,
+            'roleuser' => $a,
         ]);
     }
     #[Route('/saveproduction', name: 'app_saveproduction')]
@@ -37,9 +39,8 @@ class TProductionController extends AbstractController
           $production->setCant($cantidad);
           $production->setIDW($worker);
           $production->setIDP($product);
-
-         $doctrine->getManager()->persist($production);
-         $doctrine->getManager()->flush();
+          $doctrine->getManager()->persist($production);
+          $doctrine->getManager()->flush();
 
          return $this->redirectToRoute('app_t_production');
     }
