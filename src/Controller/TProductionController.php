@@ -36,7 +36,7 @@ class TProductionController extends AbstractController
           $production->setProductionDate(new \DateTime($fecha));
           $production->setCant($cantidad);
           $production->setIDW($worker);
-          $production->getIDP($product);
+          $production->setIDP($product);
 
          $doctrine->getManager()->persist($production);
          $doctrine->getManager()->flush();
