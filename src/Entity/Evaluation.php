@@ -16,7 +16,7 @@ class Evaluation
     #[ORM\Column(type: 'date')]
     private $evaluation_date;
 
-    #[ORM\Column(type: 'binary')]
+    #[ORM\Column(type: 'string', length: 255)]
     private $result;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -47,9 +47,9 @@ class Evaluation
         return $this;
     }
 
-    public function getResult()
+    public function getResult() : string
     {
-        return $this->result;
+        return (string) $this->result;
     }
 
     public function setResult($result): self

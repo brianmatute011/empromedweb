@@ -1,20 +1,68 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello TEvaluationController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base.head.dashboard.html.twig' %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+    {% include 'base.sliderbar.dashboard.twig' %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/br14n/PhpstormProjects/EMRPOMEDWEB/empromedweb/src/Controller/TEvaluationController.php'|file_link(0) }}">src/Controller/TEvaluationController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/br14n/PhpstormProjects/EMRPOMEDWEB/empromedweb/templates/t_evaluation/index.html.twig'|file_link(0) }}">templates/t_evaluation/index.html.twig</a></code></li>
-    </ul>
+
+    <!-- Content Start -->
+    <div class="content">
+        {% include 'base.start.content.html.twig' %}
+        {% include 'funslider.html.twig' %}
+
+
+
+
+        <!--Table Start -->
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Tabla de Evaluacion</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID Evaluacion</th>
+                            <th scope="col">ID Produccion</th>
+                            <th scope="col">ID Trabajador</th>
+                            <th scope="col">Fecha de Evaluacion</th>
+                            <th scope="col" style="text-align: center">Resultado</th>
+                            <th scope="col">Comentario</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for eval in evaluations %}
+                            <tr>
+                                <th scope="row">{{ eval.getId()}}</th>
+                                <td>{{ eval.getPEID.getID()}}</td>
+                                <td>{{ eval.getTEID.getID()}}</td>
+                                <td>{{ eval.getEvaluationDate.format('Y-m-d')}}</td>
+                                <td style="text-align: center">{{ eval.getResult()}}</td>
+                                <td>{{ eval.getComment()}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Table End -->
+
+
+
+
+
+        {% include 'base.footer.html.twig' %}
+    </div>
+    <!-- Content End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-{% endblock %}
+
+{% include'base.library.js.html.twig'%}
+</body>
+
+</html>
