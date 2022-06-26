@@ -1,20 +1,92 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello TChemicalComponentsController!{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base.head.dashboard.html.twig' %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+    {% include 'base.sliderbar.dashboard.twig' %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/br14n/PhpstormProjects/EMRPOMEDWEB/empromedweb/src/Controller/TChemicalComponentsController.php'|file_link(0) }}">src/Controller/TChemicalComponentsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/br14n/PhpstormProjects/EMRPOMEDWEB/empromedweb/templates/t_chemical_components/index.html.twig'|file_link(0) }}">templates/t_chemical_components/index.html.twig</a></code></li>
-    </ul>
+    <!-- Content Start -->
+    <div class="content">
+        {% include 'base.start.content.html.twig' %}
+        {% include 'funslider.html.twig' %}
+
+
+        <!--Insert  Porduct -->
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Insertar Componente</h6>
+                <div class="input-group mb-3">
+                    <form class="input-group mb-3" style="display: flex" action="{{path('app_savechemical')}}" method="post" name="production-form">
+                        <input type="text" class="form-control" placeholder="Nombre" aria-label="nombreC" name="nam">
+                        <input type="text" class="form-control" placeholder="PH" aria-label="PH" name="ph">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--End Insert Porduct -->
+
+        <!-- Delete Product -->
+        <div class="bg-light col-sm-12 col-xl-12">
+            <div class="col-sm-4 col-xl-4">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Eliminar Componente</h6>
+                    <div class="input-group mb-6">
+                        <form class="input-group mb-3" style="display: flex" action="{{path('app_savechemical')}}" method="post" name="production-form">
+                            <input type="text" class="form-control" placeholder="ID Componente" aria-label="IDComponent" name="id-component" required>
+                            <button type="submit" class="btn btn-danger btn-primary">Eliminar</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Delete Product -->
+
+        <!--Table Start -->
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Tabla de Comp</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID Comp</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">PH</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for component in chemicalC %}
+                            <tr>
+                                <th scope="row">{{ component.getId()}}</th>
+                                <td>{{ component.getName()}}</td>
+                                <td>{{ component.getPh()}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Table End -->
+
+
+
+
+
+        {% include 'base.footer.html.twig' %}
+    </div>
+    <!-- Content End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-{% endblock %}
+
+{% include'base.library.js.html.twig'%}
+</body>
+
+</html>
