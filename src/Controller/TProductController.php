@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TProductController extends AbstractController
 {
-    #[Route('/tproduct', name: 'app_t_product')]
+    #[Route('main/tproduct', name: 'app_t_product')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $products = $doctrine->getRepository(Products::class)->findAll();

@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TChemicalComponentsController extends AbstractController
 {
-    #[Route('/tchemicalcomponents', name: 'app_t_chemical_components')]
+    #[Route('main/tchemicalcomponents', name: 'app_t_chemical_components')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $chemicalC = $doctrine->getRepository(ChemicalsComponets::class)->findAll();

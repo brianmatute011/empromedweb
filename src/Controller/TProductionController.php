@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TProductionController extends AbstractController
 {
-    #[Route('/tproduction', name: 'app_t_production')]
+    #[Route('main/tproduction', name: 'app_t_production')]
     public function index( ManagerRegistry $doctrine): Response
     {
         $production = $doctrine->getRepository(Production::class)->findAll();

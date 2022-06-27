@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TWorkerController extends AbstractController
 {
 
-    #[Route('/tworker', name: 'app_t_worker')]
+    #[Route('main/tworker', name: 'app_t_worker')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $worker = $doctrine->getRepository(Workers::class)->findAll();
