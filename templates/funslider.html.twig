@@ -10,19 +10,23 @@
                 <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">Jhon Doe</h6>
-                <span>Drc. Prod</span>
+                <h6 class="mb-0">{{app.user.getUsername()}}</h6>
+                <span>{{app.user.getEmail()}}</span>
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Produccion</a>
-            <a href="tworker" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Trabajadores</a>
-            <a href="tproduct" class="nav-item nav-link"><i class="bi bi-heart"></i>Medicamentos</a>
-            <a href="tchemicalcomponents" class="nav-item nav-link" ><i class="bi bi-circle-square"></i>Compomentes Q</a>
-            <a href="tevaluation" class="nav-item nav-link" ><i class="bi bi-star-half"></i>Evaluacion</a>
-            <a href="system" class="nav-item nav-link" ><i class="bi bi-nut"></i>Sistema</a>
-            <a href="report" class="nav-item nav-link" ><i class="fa fa-file-alt me-2"></i>Reportes</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Produccion</a>
+                <a href="tworker" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Trabajadores</a>
+                <a href="tproduct" class="nav-item nav-link"><i class="bi bi-heart"></i>Medicamentos</a>
+                <a href="tchemicalcomponents" class="nav-item nav-link" ><i class="bi bi-circle-square"></i>Compomentes Q</a>
+                {% if app.user.getRoles()[0] == 'ROLE_ADVANCE_USER' %}
+                    <a href="tevaluation" class="nav-item nav-link" ><i class="bi bi-star-half"></i>Evaluacion</a>
+                {% endif%}
+                <a href="system" class="nav-item nav-link" ><i class="bi bi-nut"></i>Sistema</a>
+                <a href="report" class="nav-item nav-link" ><i class="fa fa-file-alt me-2"></i>Reportes</a>
+            {% endif %}
         </div>
     </nav>
 </div>

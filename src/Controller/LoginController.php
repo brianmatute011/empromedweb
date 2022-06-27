@@ -21,8 +21,15 @@ class LoginController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-
-
+        /*$GetArrayForm = $request->request;
+        $plaintextPassword = (string)$GetArrayForm->get('_password');
+        $email =  (string)$GetArrayForm->get('_username');
+        $getUserFromEmail = $doctrine->getRepository(User::class)->findByEmail($email, $em);
+        if(count($getUserFromEmail) != 0){
+            if (!$passwordHasher->isPasswordValid($getUserFromEmail[0], $plaintextPassword)){
+                return $this->redirectToRoute('app_login');
+            }
+        }*/
         return $this->render('login/index.html.twig', [
             'controller_name' => 'LoginController',
             'last_username'   => $lastUsername,
