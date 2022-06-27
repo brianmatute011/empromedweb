@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $pathimg;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $occupation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPathimg(?string $pathimg): self
     {
         $this->pathimg = $pathimg;
+
+        return $this;
+    }
+
+    public function getOccupation(): ?string
+    {
+        return $this->occupation;
+    }
+
+    public function setOccupation(?string $occupation): self
+    {
+        $this->occupation = $occupation;
 
         return $this;
     }
