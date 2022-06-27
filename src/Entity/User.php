@@ -27,6 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $username;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $pathimg;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPathimg(): ?string
+    {
+        return $this->pathimg;
+    }
+
+    public function setPathimg(?string $pathimg): self
+    {
+        $this->pathimg = $pathimg;
 
         return $this;
     }
