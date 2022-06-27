@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -57,18 +58,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @return User[] Returns an array of User objects
+         * @return User Returns an array of User objects from email parameter (ever should have size 1)
      */
-    public function findByEmail($value): array
+    public function findByEmail($email, EntityManagerInterface $em): array
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $em->createQuery(
+            'SELECT u
+            FROM App\Entity\User u
+            WHERE u.email = :email'
+        )->setParameter('email', $email);
+        return $query->getResult();
     }
 
 //    public function findOneBySomeField($value): ?User

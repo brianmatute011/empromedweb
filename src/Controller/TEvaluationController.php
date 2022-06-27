@@ -13,6 +13,7 @@ class TEvaluationController extends AbstractController
     #[Route('/tevaluation', name: 'app_t_evaluation')]
     public function index(ManagerRegistry $doctrine): Response
     {   $evaluation = $doctrine->getRepository(Evaluation::class)->findAll();
+
         return $this->render('t_evaluation/index.html.twig', [
             'controller_name' => 'TEvaluationController',
             'evaluations' => $evaluation
