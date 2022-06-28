@@ -14,6 +14,89 @@
 
 
 
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                    aria-expanded="true" aria-controls="flush-collapseOne">
+                                Usuarios Disponibles
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <!-- Recent Sales Start -->
+                                <div class="container-fluid pt-4 px-4">
+                                    <div class="bg-light text-center rounded p-4">
+                                        <div class="table-responsive">
+                                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                                <thead>
+                                                <tr class="text-dark">
+                                                    <th scope="col">Usuario</th>
+                                                    <th scope="col">Correo</th>
+                                                    <th scope="col">Ocupacion</th>
+                                                    <th scope="col">Rol</th>
+                                                    <th scope="col">Operacion</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for user in users %}
+                                                <tr>
+                                                    <td>{{ user.getUsername()}}</td>
+                                                    <td>{{ user.getEmail()}}</td>
+                                                    <td>{{ user.getOccupation()}}</td>
+                                                    <td>{{ user.getRoles()[0]}}</td>
+                                                    <td><a class="btn btn-sm btn-danger justify-content-center" href="">Eliminar</a></td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Recent Sales End -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Ingresar
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Tenga en cuenta que si el usario ya existe se sobrescribiran los cambios en este
+                                <div class="col-sm-12 col-xl-12">
+                                    <div class="bg-light rounded h-100 p-4">
+                                        <div class="input-group mb-3">
+                                            <form class="input-group mb-3" style="display: flex" action="" method="post" name="production-form">
+                                                <input type="text" class="form-control" placeholder="Nombre de Usuario" aria-label="UserName" name="user-name">
+                                                <input type="text" class="form-control" placeholder="Email" aria-label="Email" name="email">
+                                                <input type="text" class="form-control" placeholder="Ocupacion " aria-label="Ocupation" name="ocupation">
+                                                <input type="text" class="form-control" placeholder="Rol" aria-label="Rol" name="role" required>
+                                                <button type="submit" class="btn btn-primary">Realizar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
 
         {% include 'base.footer.html.twig' %}
     </div>
