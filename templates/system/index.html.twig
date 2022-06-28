@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base.head.dashboard.html.twig' %}
+
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+    {% include 'base.sliderbar.dashboard.twig' %}
+
+
+    <!-- Content Start -->
+    <div class="content">
+        {% include 'base.start.content.html.twig' %}
+        {% include 'funslider.html.twig' %}
+
+
+
+
+        {% include 'base.footer.html.twig' %}
+    </div>
+    <!-- Content End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+{% include'base.library.js.html.twig'%}
+</body>
+
+</html>

@@ -11,20 +11,34 @@
             </div>
             <div class="ms-3">
                 <h6 class="mb-0">{{app.user.getUsername()}}</h6>
-                <span>{{app.user.getEmail()}}</span>
+                <span>{{app.user.getOccupation()}}</span>
             </div>
         </div>
         <div class="navbar-nav w-100">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
+                {% if not is_granted('ROLE_MINIADMIN')%}
                 <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Produccion</a>
+                {%endif%}
+
                 <a href="tworker" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Trabajadores</a>
+
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ADVANCE_USER')%}
                 <a href="tproduct" class="nav-item nav-link"><i class="bi bi-heart"></i>Medicamentos</a>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN')%}
                 <a href="tchemicalcomponents" class="nav-item nav-link" ><i class="bi bi-circle-square"></i>Compomentes Q</a>
-                {% if app.user.getRoles()[0] == 'ROLE_ADVANCE_USER' %}
+                {%endif%}
+
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODERATOR') %}
                     <a href="tevaluation" class="nav-item nav-link" ><i class="bi bi-star-half"></i>Evaluacion</a>
                 {% endif%}
+
+                {% if is_granted('ROLE_MINIADMIN') %}
                 <a href="system" class="nav-item nav-link" ><i class="bi bi-nut"></i>Sistema</a>
+                {%endif%}
                 <a href="report" class="nav-item nav-link" ><i class="fa fa-file-alt me-2"></i>Reportes</a>
             {% endif %}
         </div>

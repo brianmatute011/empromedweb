@@ -13,6 +13,9 @@
     <div class="content">
         {% include 'base.start.content.html.twig' %}
         {% include 'funslider.html.twig' %}
+
+
+        {% if is_granted('ROLE_MODERATOR') %}
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Agregar Evaluacion</h6>
@@ -28,6 +31,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
 
 
         <!--Table Start -->
