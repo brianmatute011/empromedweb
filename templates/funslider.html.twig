@@ -16,10 +16,10 @@
         </div>
         <div class="navbar-nav w-100">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Inicio</a>
 
                 {% if not is_granted('ROLE_MINIADMIN')%}
-                <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Produccion</a>
+                <a href="tproduction" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Producción</a>
                 {%endif%}
 
                 <a href="tworker" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Trabajadores</a>
@@ -33,7 +33,7 @@
                 {%endif%}
 
                 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODERATOR') %}
-                    <a href="tevaluation" class="nav-item nav-link" ><i class="bi bi-star-half"></i>Evaluacion</a>
+                    <a href="tevaluation" class="nav-item nav-link" ><i class="bi bi-star-half"></i>Evaluación</a>
                 {% endif%}
 
                 {% if is_granted('ROLE_MINIADMIN') %}

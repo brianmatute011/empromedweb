@@ -18,10 +18,10 @@
         {% if is_granted('ROLE_MODERATOR') %}
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Agregar Evaluacion</h6>
+                <h6 class="mb-4">Agregar Evaluación</h6>
                 <div class="input-group mb-3">
                     <form class="input-group mb-3" style="display: flex" action="{{ path('app_saveeval') }}" method="post" name="production-form">
-                        <input type="text" class="form-control" placeholder="ID Produccion" aria-label="IDProduction" name="id-production">
+                        <input type="text" class="form-control" placeholder="ID Producción" aria-label="IDProduction" name="id-production">
                         <input type="text" class="form-control" placeholder="ID Trabajador" aria-label="IDWorker" name="id-worker">
                         <input type="text" class="form-control" placeholder="Fecha Eval. " aria-label="IDEvalDate" name="date">
                         <input type="text" class="form-control" placeholder="Resultado" aria-label="Result" name="result" required>
@@ -38,15 +38,15 @@
 
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Tabla de Evaluacion</h6>
+                <h6 class="mb-4">Tabla de Evaluación</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">ID Evaluacion</th>
-                            <th scope="col">ID Produccion</th>
+                            <th scope="col">ID Evaluación</th>
+                            <th scope="col">ID Producción</th>
                             <th scope="col">ID Trabajador</th>
-                            <th scope="col">Fecha de Evaluacion</th>
+                            <th scope="col">Fecha de Evaluación</th>
                             <th scope="col" style="text-align: center">Resultado</th>
                             <th scope="col">Comentario</th>
                         </tr>

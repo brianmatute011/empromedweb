@@ -4,7 +4,7 @@
         <i class="fa fa-bars"></i>
     </a>
     <form class="d-none d-md-flex ms-4">
-        <input class="form-control border-0" type="search" placeholder="Search">
+        <input class="form-control border-0" type="search" placeholder="Buscar">
     </form>
     <div class="navbar-nav align-items-center ms-auto">
         <div class="nav-item dropdown">
@@ -13,40 +13,21 @@
                 <span class="d-none d-lg-inline-flex">Mensajes</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="{{ asset(app.user.getPathimg()) }}" alt="" style="width: 50px; height: 50px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>Hace 15 minutos
-                            </small>
+                {% set rowmsg = 0 %}
+                {% for rowmsg in 0..3 %}
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="{{ asset(app.user.getPathimg()) }}" alt="" style="width: 50px; height: 50px;">
+                            <div class="ms-2">
+                                <h6 class="fw-normal mb-0">Tienes un nuevo mensaje</h6>
+                                <small>Hace {{ rowmsg + 15}} minutos
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="{{ asset(app.user.getPathimg()) }}" alt="" style="width: 50px; height: 50px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>Hace 15 minutos
-                            </small>
-                        </div>
-                    </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="{{ asset(app.user.getPathimg()) }}" alt="" style="width: 50px; height: 50px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>Hace 15 minutos
-                            </small>
-                        </div>
-                    </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item text-center">See all message</a>
+                    </a>
+                {% endfor %}
+                <a href="#" class="dropdown-item text-center">Mostrar todos los mensajes</a>
             </div>
         </div>
         <div class="nav-item dropdown">
@@ -55,24 +36,16 @@
                 <span class="d-none d-lg-inline-flex">Notificaciones</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Perfil Actualizado</h6>
-                    <small>Hace 15 minutos</small>
-                </a>
+                {% set notification = 0 %}
+                {% for notification in 0..3 %}
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">Se agregó un nuevo reporte</h6>
+                        <small>Hace {{ notification + 15}} minutos</small>
+                    </a>
+                {% endfor %}
                 <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">New user added</h6>
-                    <small>Hace 15 minutos
-                    </small>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Password changed</h6>
-                    <small>Hace 15 minutos
-                    </small>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item text-center">See all notifications</a>
+                <a href="#" class="dropdown-item text-center">Mostrar todo</a>
             </div>
         </div>
         <div class="nav-item dropdown">
@@ -81,7 +54,7 @@
                 <span class="d-none d-lg-inline-flex"> {{app.user.getUsername()}} </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="{{ path('app_logout') }}" class="dropdown-item">Log Out</a>
+                <a href="{{ path('app_logout') }}" class="dropdown-item">Salir</a>
             </div>
         </div>
     </div>
