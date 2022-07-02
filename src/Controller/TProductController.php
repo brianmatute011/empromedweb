@@ -18,6 +18,7 @@ class TProductController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $products = $doctrine->getRepository(Products::class)->findAll();
+
         return $this->render('t_product/index.html.twig', [
             'controller_name' => 'TProductController',
             'products' => $products

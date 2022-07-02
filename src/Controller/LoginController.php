@@ -21,6 +21,7 @@ class LoginController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+
         /*$GetArrayForm = $request->request;
         $plaintextPassword = (string)$GetArrayForm->get('_password');
         $email =  (string)$GetArrayForm->get('_username');

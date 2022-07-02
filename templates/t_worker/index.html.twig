@@ -13,7 +13,7 @@
         {% include 'funslider.html.twig' %}
 
 
-        {% if app.user.getRoles()[0] == 'ROLE_ADMIN' %}
+        {% if is_granted('ROLE_ADMIN') %}
         <!-- Insert Worker-->
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
